@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-if [[ -z "${MYENV}" ]]; then
-  MY_ENV="my_env"
+if [[ -z "${ENV_NAME}" ]]; then
+  ENV_NAME="my_env"
 else
-  MY_ENV="${MYENV}"
+  ENV_NAME="${ENV_NAME}"
 fi
 
 function usage {
@@ -19,23 +19,23 @@ Commands:
 }
 
 function create_env {
-    docker create -it --name my_env --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
+    docker create -it --name $ENV_NAME --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
 }
 
 function start_env {
-    docker start -i $MY_ENV
+    docker start -i $ENV_NAME
 }
 
 function stop_env {
-    docker stop $MY_ENV
+    docker stop $ENV_NAME
 }
 
 function remove_env {
-    docker rm -f $MY_ENV
+    docker rm -f $ENV_NAME
 }
 
 function run_env {
-    docker run -it --rm --name $MY_ENV --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
+    docker run -it --rm --name $ENV_NAME --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
 }
 
 if [[ $# -lt 1 ]]; then
