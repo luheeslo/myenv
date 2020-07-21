@@ -44,7 +44,6 @@ echo    create_env    Create the environment container
 echo    start_env     Start the environment container
 echo    stop_env      Stop the the environment container already started
 echo    remove_env    Remove the environment container
-echo %ENVNAME%
 EXIT /B 0
 
 :CreateEnv
@@ -57,10 +56,6 @@ EXIT /B 0
 
 :StopEnv
 docker stop %ENVNAME%
-EXIT /B 0
-
-:RemoveEnv
-docker rm -f %ENVNAME%
 EXIT /B 0
 
 :RemoveEnv
