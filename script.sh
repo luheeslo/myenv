@@ -19,7 +19,7 @@ Commands:
 }
 
 function create_env {
-    docker create -it --name $ENV_NAME --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
+    docker create -p 5000:5000 -it --name $ENV_NAME --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
 }
 
 function start_env {
@@ -35,7 +35,7 @@ function remove_env {
 }
 
 function run_env {
-    docker run -it --rm --name $ENV_NAME --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
+    docker run -p 5000:5000 -it --rm --name $ENV_NAME --mount type=bind,source="$(pwd)",target=/root/env lhel/myenv
 }
 
 if [[ $# -lt 1 ]]; then

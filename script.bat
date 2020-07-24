@@ -47,7 +47,7 @@ echo    remove_env    Remove the environment container
 EXIT /B 0
 
 :CreateEnv
-docker create -it --name %ENVNAME% --mount type=bind,source=%CURRENT_DIR%,target=/root/env lhel/myenv
+docker create -p 5000:5000 -it --name %ENVNAME% --mount type=bind,source=%CURRENT_DIR%,target=/root/env lhel/myenv
 EXIT /B 0
 
 :StartEnv
